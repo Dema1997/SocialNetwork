@@ -33,12 +33,19 @@ export const Users = ({users}) =>{
         
       { creating ?
         <Dialog fullWidth open='true'>
-        <form>
-          <TextField type="text" placeholder="firstName"/><br/>
-          <TextField type="text" placeholder="firstName"/><br/>
-          <TextField type="text" placeholder="firstName"/><br/>
-          <TextField type="text" placeholder="firstName"/><br/>
-          <TextField type="text" placeholder="firstName"/><br/>
+          <DialogTitle style={{textAlign:'center',marginTop:10}}>
+            <h2><b>Adding new user...</b></h2>
+          </DialogTitle>
+        <form style={{padding:50,paddingTop:30}}>
+          <TextField fullWidth type="text" placeholder="firstName"/><br/><br/>
+          <TextField fullWidth type="text" placeholder="firstName"/><br/><br/>
+          <TextField fullWidth type="text" placeholder="firstName"/><br/><br/>
+          <TextField fullWidth type="text" placeholder="firstName"/><br/><br/>
+          <TextField fullWidth type="text" placeholder="firstName"/><br/><br/><br/>
+          <div>
+          <Button  variant ="outlined"  style={{float:'right',borderColor:'#47cf73'}}>Confirm</Button>
+          <Button color="secondary" onClick={handleClick} variant ="outlined" style={{float:'right',marginRight:8}}>Close</Button>
+          </div>
         </form>
         </Dialog>
         : <></> 
