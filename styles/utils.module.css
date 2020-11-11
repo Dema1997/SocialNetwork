@@ -64,7 +64,7 @@
   
   .listItem {
     margin: 0 0 1.25rem;
-    list-style-type: circle;
+    list-style-type: none;
   }
   
   .lightText {
@@ -105,13 +105,14 @@
   .poppins {
     font-family: 'Poppins', 'sans-serif';
   }
-
+ 
   /*
   **
   */
 
-
   .container {
+    border:1px solid black;
+    border-radius: 10px;
     background-color: white;
     min-height: 100vh;
     padding: 0 0.5rem;

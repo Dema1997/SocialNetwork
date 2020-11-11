@@ -36,8 +36,16 @@ export default function Home() {
       <section className={utilStyles.headingMd}>
        <h1 className={utilStyles.headingLgB}>Blog</h1>
        <ul className={utilStyles.list}>
+
+          <li className={utilStyles.listItem}>
+             <Link href="/Users"><a >Users</a></Link>
+             <br/>
+             <small>
+               <time className={utilStyles.headingSm} dateTime="">Up-to-date</time>
+             </small>
+          </li>
         
-          <li className={utilStyles.li}>
+          <li className={utilStyles.listItem}>
              <Link href="/posts/Covid19Data"><a >Covid-19 Analitycs and Statistics </a></Link>
              <br/>
              <small>
@@ -45,7 +53,7 @@ export default function Home() {
              </small>
           </li>
 
-           <li className={utilStyles.li}>
+           <li className={utilStyles.listItem}>
              <Link href="/posts/firstPost"><a>Your first React App </a></Link>
              <br/>
              <small>
@@ -53,7 +61,7 @@ export default function Home() {
              </small>
           </li>
 
-          <li className={utilStyles.li}>
+          <li className={utilStyles.listItem}>
              <Link href="/posts/MongoDBApp"><a>Mongo DB, React js and Typescript all in one single web application </a></Link>
              <br/>
              <small>

@@ -8,7 +8,7 @@ export const Users = ({users}) =>{
       <div className={styles.container}>
 
       <Head>
-        <title>Create Next App</title>
+        <title>Users</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
