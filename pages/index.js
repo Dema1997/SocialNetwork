@@ -36,7 +36,7 @@ export default function Home() {
       <section className={utilStyles.headingMd}>
        <h1 className={utilStyles.headingLgB}>Blog</h1>
        <ul className={utilStyles.list}>
-        <h1>Prova</h1>
+        
           <li className={utilStyles.li}>
              <Link href="/posts/Covid19Data"><a >Covid-19 Analitycs and Statistics </a></Link>
              <br/>
