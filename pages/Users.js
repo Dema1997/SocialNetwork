@@ -1,7 +1,18 @@
 import styles from '../styles/utils.module.css'
 import Head from 'next/head'
 import Layout from '../components/Layout'
+import {Button, DialogContent, DialogTitle, TextField} from '@material-ui/core'
+import Dialog from '@material-ui/core/Dialog';
+import {useState} from 'react'
+
 export const Users = ({users}) =>{
+
+  const [creating,setCreating] = useState(false)
+
+  const handleClick=()=>{
+    setCreating(!creating)
+    console.log(creating)
+  }
 
     return(
    <Layout>
@@ -16,12 +27,29 @@ export const Users = ({users}) =>{
         <h1 className={styles.title}>
          {users.length} users
         </h1>
+        <br/>
+
+        <Button onClick={handleClick} variant ="outlined">Create User</Button>
+        
+      { creating ?
+        <Dialog fullWidth open='true'>
+        <form>
+          <TextField type="text" placeholder="firstName"/><br/>
+          <TextField type="text" placeholder="firstName"/><br/>
+          <TextField type="text" placeholder="firstName"/><br/>
+          <TextField type="text" placeholder="firstName"/><br/>
+          <TextField type="text" placeholder="firstName"/><br/>
+        </form>
+        </Dialog>
+        : <></> 
+      }
 
         <div className={styles.grid}>
         {   
-            users.map(user =>{
+            users.map((user,i) =>{
+              console.log(i + user.email)
               return(
-               <a href="#" className={styles.card}>
+               <a id={i + user.email} href="#" className={styles.card}>
                   <h3>{user.firstName} {user.lastName} &rarr;</h3>
                   <p>{user.email}</p>
                   <p>{user.address}</p>
