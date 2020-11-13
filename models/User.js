@@ -6,17 +6,17 @@ const UserSchema = new mongoose.Schema({
         required: [true, 'Please add a title'],
         unique: true,
         trim: true,
-        maxlength: [20, 'First Name cannot be more than 20 characters']
+        maxlength: [25, 'First Name cannot be more than 20 characters']
     },
     lastName: {
         type: String,
         required: true,
-        maxlength: [20, 'Last Name cannot be more than 20 characters']
+        maxlength: [25, 'Last Name cannot be more than 20 characters'],
     },
     email: {
         type: String,
         required: true,
-        maxlength: [20, 'Email cannot be more than 20 characters']
+        maxlength: [35, 'Email cannot be more than 20 characters']
     },
     city: {
         type: String,
@@ -26,7 +26,7 @@ const UserSchema = new mongoose.Schema({
     address: {
         type: String,
         required: true,
-        maxlength: [20, 'Address cannot be more than 20 characters']
+        maxlength: [35, 'Address cannot be more than 20 characters']
     },
     date: {
         type: String,

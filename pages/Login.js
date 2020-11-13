@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import FormLogin from '../components/FormLogin';
-import css from './index.module.css';
 
  class Login extends Component {
 
@@ -10,7 +9,7 @@ import css from './index.module.css';
     }
 
      nextStep = () => {
-        const { step, firstName, lastName, email, city } =this.state;
+        const { step } =this.state;
         this.setState({
             step: step + 1
         });
@@ -27,11 +26,11 @@ import css from './index.module.css';
         console.log(this.state)
     }
     render(){
-        //const {step}=this.state
-        const {  email, password }= this.state
-        const values = {  email, password}
+        const { email, password } = this.state
+        const values = { email, password } 
                 return(
                     <FormLogin
+                      values={values}
                     />
                 )
            

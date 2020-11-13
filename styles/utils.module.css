@@ -63,8 +63,10 @@
   }
   
   .listItem {
-    margin: 0 0 1.25rem;
+    margin: 0 0 1rem;
+    line-height: 30px;
     list-style-type: none;
+    margin-bottom: 19px;
   }
   
   .lightText {

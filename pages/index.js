@@ -38,7 +38,7 @@ export default function Home() {
        <ul className={utilStyles.list}>
 
           <li className={utilStyles.listItem}>
-             <Link href="/Users"><a >Users</a></Link>
+             <Link href="/Users"><a>Users</a></Link>
              <br/>
              <small>
                <time className={utilStyles.headingSm} dateTime="">Up-to-date</time>

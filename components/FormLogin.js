@@ -4,61 +4,85 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import {useState} from 'react'
+import { useRouter } from 'next/router'
+import styles from '../styles/utils.module.css'
 
- class FormLogin extends Component {
 
-state={
-    email: '',
-    password: ''
-}
+const FormLogin = ({props}) => {
 
-    continue = e =>{
+    const [campi, setCampi]= useState({
+      email:'',
+      password:''
+    })
+    const router = useRouter()
+
+    const continu = (e) =>{
         e.preventDefault()
-        this.props.nextStep();
+        props.prevStep();
     }
-    back = e =>{
+    const back = (e) =>{
         e.preventDefault()
-        this.props.prevStep();
+        props.prevStep();
     }
-    handleChange = input => e =>{
-      this.setState({ [input]: e.target.value });
-      console.log(this.state)
-  }
-    render(){
-      const {  email, password,handleChange } = this.state
-      const values = {  email, password  }
-    return(
+
+    const handleChange = (e) =>{
+      setCampi({ ...campi, [e.target.name]: e.target.value })
+    }
+
+    const handleSubmit = (e)=>{
+      //TODO
+      e.preventDefault()
+      router.push("/userLogged")
+    }
+
+    const {  email, password } = campi
+    const values = {  email, password }
+
+      return(
+        
         <MuiThemeProvider>
-            <div>
               <AppBar title="Enter details" />
-              <TextField 
-                hintText="Enter your email"
-                floatingLabelText="Email"
-                onChange={this.props.handleChange('email')}
-                defaultValue={values.email}
+              <div className={styles.main}>
+              <form onSubmit={handleSubmit}>
+              <TextField
+                required
+                name="email"
+                type="email"
+                value={campi.email}
+                placeholder="Email"
+                onChange={handleChange}
+                style={_styles.textField}
               />
               <br/>
-              <TextField 
-                hintText="Enter your password"
-                floatingLabelText="Password"
-                onChange={this.props.handleChange('password')}
-                defaultValue={values.password}
+              <TextField
+                required
+                name="password"
+                type="password"
+                value={campi.password}
+                placeholder="Password"
+                onChange={handleChange}
+                style={_styles.textField}
               />
               <br/>
               <RaisedButton
-                style={styles.button}
-                label="Continue"
+                type="submit"
+                style={_styles.button}
+                label="Log in"
                 primary={true}
-                onClick={this.continue}
               />
+              </form>
             </div>
         </MuiThemeProvider>
     );
-    }
+    
 }
-const styles={
+const _styles={
     button:{
         margin: 15
+    },
+    textField:{
+      color:'white'
     }
 }
 export default FormLogin;
