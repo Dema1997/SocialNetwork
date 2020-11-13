@@ -26,23 +26,17 @@ const FormLogin = ({props}) => {
     })
     const router = useRouter()
 
-    const continu = (e) =>{
-        e.preventDefault()
-        props.prevStep();
-    }
-    const back = (e) =>{
-        e.preventDefault()
-        props.prevStep();
-    }
-
     const handleChange = (e) =>{
       setCampi({ ...campi, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = (e)=>{
-      //TODO
       e.preventDefault()
+      //validateUser()
       router.push("/userLogged")
+    }
+    const validateUser = () => {
+      //
     }
 
     const {  email, password } = campi
@@ -53,7 +47,7 @@ const FormLogin = ({props}) => {
         <MuiThemeProvider>
               <AppBar title="Enter details" />
               <div className={styles.main} >
-              <form onSubmit={handleSubmit} style={{backgroundColor:'white', padding:40,borderRadius:15}}>
+              <form onSubmit={handleSubmit} style={{ backgroundColor:'white', padding:40,borderRadius:15}}>
               <TextField
                 inputProps={{
                   className: classes.inputRoot
@@ -90,6 +84,7 @@ const FormLogin = ({props}) => {
 }
 const _styles={
     button:{
+        fontSize:'13px',
         backgroundColor: '#47cf73'
     },
 }

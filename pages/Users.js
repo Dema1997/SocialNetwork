@@ -5,6 +5,7 @@ import {Button, DialogTitle, TextField} from '@material-ui/core'
 import Dialog from '@material-ui/core/Dialog';
 import { useEffect, useState} from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/Link'
 
 export const Users = ({users}) =>{
 
@@ -100,13 +101,14 @@ export const Users = ({users}) =>{
             users.map((user,i) =>{
               return(
                 <>
-               <a id={i + user.email} href="#" className={styles.card}>
+               <Link href={user._id}><a id={i + user.email}  className={styles.card}>
                   <h3>{user.firstName} {user.lastName} &rarr;</h3>
                   <p>{user.email}</p>
                   <p>{user.address}</p>
                   <p>{user.date}</p>
                   <p>{user.city}</p>
                 </a>
+                </Link>
                 </>
               )
             })
