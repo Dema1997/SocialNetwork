@@ -71,7 +71,7 @@ export default function Layout({ children, home }) {
   return (
     <>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap" rel="stylesheet"></link>
-    <AppBar style={{backgroundColor: '#131417'}} position="static">
+    <AppBar style={{backgroundColor: '#1a1a1a'}} position="static">
       <Toolbar style={{paddingTop:12,paddingLeft:25,paddingRight:25, paddingBottom:12, height: 85}}>
 
         <IconButton  aria-label= "" style={{background:'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',color:"black" }}>
@@ -94,8 +94,8 @@ export default function Layout({ children, home }) {
             
         </Typography>
         
-        <Button href="/Signin" style={{ marginLeft:20,height:56, background:'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',fontSize:14,textTransform:'capitalize', marginRight:2}}>Sign in</Button>
-        <Button href="/Login" style={{ marginLeft:20,height:56, backgroundImage: 'linear-gradient(315deg, #7ee8fa 0%, #80ff72 74%)', backgroundColor:'#7ee8fa', fontSize:14, textTransform:'capitalize', marginRight:2}}> Log in </Button>
+        <Link href="Signin"><Button  style={{ marginLeft:20,height:56, background:'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',fontSize:14,textTransform:'capitalize', marginRight:2}}>Sign in</Button></Link>
+        <Link href="Login"><Button  style={{ marginLeft:20,height:56, backgroundImage: 'linear-gradient(315deg, #7ee8fa 0%, #80ff72 74%)', backgroundColor:'#7ee8fa', fontSize:14, textTransform:'capitalize', marginRight:2}}> Log in </Button></Link>
 
       </Toolbar> 
     </AppBar>

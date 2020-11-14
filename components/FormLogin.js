@@ -6,6 +6,7 @@ import {useState} from 'react'
 import { useRouter } from 'next/router'
 import styles from '../styles/utils.module.css'
 import { makeStyles } from '@material-ui/core/styles'
+import Link from 'next/Link'
 
 const useStyles = makeStyles({
   button: {
@@ -80,7 +81,7 @@ export const FormLogin = () => {
               <AppBar title="Enter details" />
               <div className={styles.main} >
               <h2 className={classes.titleLogin}>Sign in to</h2>
-              <a href="/"><img src="/images/logow.png"></img></a>
+              <Link href="/"><a><img src="/images/logow.png"></img></a></Link>
               <br/>
               <form onSubmit={handleSubmit} style={{ backgroundColor:'#c5cbd3',  padding:25, borderRadius:5}}>
               <label className={classes.label}>Username or email address</label><br/>
@@ -121,7 +122,7 @@ export const FormLogin = () => {
               >Sign in</Button>
               </form>
 
-              <p className={classes.newToWhoPlays}>New to WhoPlays? <a href='/Signin'>Create an account</a></p>
+              <p className={classes.newToWhoPlays}>New to WhoPlays? <Link href='/Signin'><a>Create an account</a></Link></p>
             </div>
           </>
     );
