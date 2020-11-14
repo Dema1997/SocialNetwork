@@ -22,8 +22,8 @@ export default function Home() {
 
   return (
      
-    <Layout home>
-
+    
+<Layout home>
       <Head>
         <title>FDM</title>
       </Head>
@@ -73,6 +73,6 @@ export default function Home() {
       </section>
       </div>
 
-    </Layout>
+      </Layout>
   )
 }

@@ -76,6 +76,7 @@ export const Users = ({users}) =>{
         <Button onClick={handleClick} variant ="outlined">Create User</Button>
         
       { creating ?
+      <>
         <Dialog fullWidth open='true'>
           <DialogTitle style={{textAlign:'center',marginTop:10}}>
             <h2><b>Adding new user...</b></h2>
@@ -93,6 +94,7 @@ export const Users = ({users}) =>{
           </div>
         </form>
         </Dialog>
+        </>
         : <></> 
       }
 

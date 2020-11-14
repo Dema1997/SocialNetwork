@@ -1,29 +1,61 @@
 import React from 'react';
 import Button from '@material-ui/core/Button'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import TextField from 'material-ui/TextField';
+import AppBar from '@material-ui/core/AppBar';
+import TextField from '@material-ui/core/TextField';
 import {useState} from 'react'
 import { useRouter } from 'next/router'
 import styles from '../styles/utils.module.css'
 import { makeStyles } from '@material-ui/core/styles'
 
-const useStyles = makeStyles((theme) => ({
-  inputRoot: {
-    color: 'white',
-    borderRadius: 5,
-    border:'2px solid orange',
-    background:'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
+const useStyles = makeStyles({
+  button: {
+    textTransform:'none',
+    letterSpacing:1.3,
+    fontSize:14,
+    fontWeight:400,
+    marginTop:10,
+    backgroundColor: '#2ea44f',
+    color:"white"
   },
-}));
+  textField: {
+    marginTop:5,
+    marginBottom:11
+  },
+  inputRoot: {
+    height:1,
+  },
+  label: {
+    fontSize:14,
+    fontWeight:600,
+  },
+  titleLogin: {
+    textAlign:'center',
+    color:'white',
+    fontWeight:300,
+    letterSpacing:1,
+    fontSize:19,
+    marginTop:50,
+    marginBottom:15
+  },
+  forgotPassword: {
+    color:'#0366d6',
+    fontSize:14,
+    fontWeight: 500
+  },
+  newToWhoPlays: {
+    cursor: 'pointer',
+    fontSize:14
+  },
+});
 
-const FormLogin = ({props}) => {
+export const FormLogin = () => {
     const classes = useStyles();
 
     const [campi, setCampi]= useState({
       email:'',
       password:''
     })
+
     const router = useRouter()
 
     const handleChange = (e) =>{
@@ -35,57 +67,64 @@ const FormLogin = ({props}) => {
       //validateUser()
       router.push("/userLogged")
     }
+
     const validateUser = () => {
       //
     }
 
-    const {  email, password } = campi
-    const values = {  email, password }
+    const { email, password } = campi
+    const values = { email, password }
 
       return(
-        
-        <MuiThemeProvider>
+           <>
               <AppBar title="Enter details" />
               <div className={styles.main} >
-              <form onSubmit={handleSubmit} style={{ backgroundColor:'white', padding:40,borderRadius:15}}>
+              <h2 className={classes.titleLogin}>Sign in to</h2>
+              <a href="/"><img src="/images/logow.png"></img></a>
+              <br/>
+              <form onSubmit={handleSubmit} style={{ backgroundColor:'#c5cbd3',  padding:25, borderRadius:5}}>
+              <label className={classes.label}>Username or email address</label><br/>
               <TextField
+                className={classes.textField}
                 inputProps={{
                   className: classes.inputRoot
                 }}
                 required
+                variant="outlined"
                 name="email"
                 type="email"
                 value={campi.email}
-                placeholder="Email"
                 onChange={handleChange}
-                style={_styles.textField}
               />
               <br/>
+              <label className={classes.label}>Password</label><br/>
               <TextField
+                className={classes.textField}
+                inputProps={{
+                  className: classes.inputRoot
+                }}
                 required
+                variant="outlined"
                 name="password"
                 type="password"
                 value={campi.password}
-                placeholder="Password"
                 onChange={handleChange}
-                style={_styles.textField}
               />
-              <br/><br/>
+              <br/>
+              <a className={classes.forgotPassword}>Forgot password?</a>
+              <br/>
               <Button
+              fullWidth
                 type="submit"
-                style={_styles.button}
+                className={classes.button}
                 label="Log in"
-              >Log in</Button>
+              >Sign in</Button>
               </form>
+
+              <p className={classes.newToWhoPlays}>New to WhoPlays? <a href='/Signin'>Create an account</a></p>
             </div>
-        </MuiThemeProvider>
+          </>
     );
     
-}
-const _styles={
-    button:{
-        fontSize:'13px',
-        backgroundColor: '#47cf73'
-    },
 }
 export default FormLogin;
