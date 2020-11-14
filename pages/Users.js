@@ -102,8 +102,8 @@ export const Users = ({users}) =>{
         {   
             users.map((user,i) =>{
               return(
-                <>
-               <Link href={`/${user._id}`}><a id={i + user.email}  className={styles.card}>
+                < >
+               <Link id={user._id} href={`/${user._id}`}><a   className={styles.card}>
                   <h3>{user.firstName} {user.lastName} &rarr;</h3>
                   <p>{user.email}</p>
                   <p>{user.address}</p>

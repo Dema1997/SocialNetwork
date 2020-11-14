@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import styles from '../styles/utils.module.css'
 import { makeStyles } from '@material-ui/core/styles'
 import Link from 'next/Link'
+const jwt = require('jsonwebtoken');
 
 const useStyles = makeStyles({
   button: {
@@ -52,29 +53,50 @@ const useStyles = makeStyles({
 export const FormLogin = () => {
     const classes = useStyles();
 
-    const [campi, setCampi]= useState({
-      email:'',
-      password:''
-    })
+    const [ email, setEmail ] = useState('')
+    const [ password, setPassword ] = useState('')
 
+    const [secret, setSecret]=useState('')
     const router = useRouter()
-
-    const handleChange = (e) =>{
-      setCampi({ ...campi, [e.target.name]: e.target.value })
+    
+    const handleEmail = (e) =>{
+      setEmail(  e.target.value )
     }
 
-    const handleSubmit = (e)=>{
-      e.preventDefault()
-      //validateUser()
-      router.push("/userLogged")
+    const handlePassword = (e) =>{
+      setPassword( e.target.value )
     }
 
-    const validateUser = () => {
-      //
-    }
+    async function handleLogin () {
 
-    const { email, password } = campi
-    const values = { email, password }
+      const res= await fetch('/api/login',{
+        method: 'POST',
+        body: JSON.stringify({ email, password })
+      }).then((t)=> t.json())
+
+      const token = res.token
+      console.log(token)
+      
+      if(token){
+        const json=jwt.decode(token)
+        console.log(json)
+
+        const res= await fetch('api/secret',{
+          method:'POST',
+          headers:{
+            'Content-Type':'application/json'
+          },
+          body: JSON.stringify({token})
+        }).then((t)=> t.json())
+        
+        router.push('/UserLogged')
+        
+      }
+
+        else{
+          console.log('Error')
+        }
+    }
 
       return(
            <>
@@ -83,7 +105,8 @@ export const FormLogin = () => {
               <h2 className={classes.titleLogin}>Sign in to</h2>
               <Link href="/"><a><img src="/images/logow.png"></img></a></Link>
               <br/>
-              <form onSubmit={handleSubmit} style={{ backgroundColor:'#c5cbd3',  padding:25, borderRadius:5}}>
+
+              <form style={{ backgroundColor:'#c5cbd3',  padding:25, borderRadius:5}}>
               <label className={classes.label}>Username or email address</label><br/>
               <TextField
                 className={classes.textField}
@@ -94,8 +117,8 @@ export const FormLogin = () => {
                 variant="outlined"
                 name="email"
                 type="email"
-                value={campi.email}
-                onChange={handleChange}
+                value={email}
+                onChange={handleEmail}
               />
               <br/>
               <label className={classes.label}>Password</label><br/>
@@ -108,15 +131,15 @@ export const FormLogin = () => {
                 variant="outlined"
                 name="password"
                 type="password"
-                value={campi.password}
-                onChange={handleChange}
+                value={password}
+                onChange={handlePassword}
               />
               <br/>
               <a className={classes.forgotPassword}>Forgot password?</a>
               <br/>
               <Button
               fullWidth
-                type="submit"
+                onClick={handleLogin}
                 className={classes.button}
                 label="Log in"
               >Sign in</Button>

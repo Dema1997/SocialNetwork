@@ -21,7 +21,7 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx", "pages/Login.js", "components/FormUserDetails.js", "components/UserForm.js", "components/Layout.js"
+    "**/*.tsx", "pages/Login.js", "components/FormUserDetails.js", "components/UserForm.js", "components/Layout.js", "pages/api/secret.js"
   ],
   "exclude": [
     "node_modules"

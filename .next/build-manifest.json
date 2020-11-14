@@ -24,15 +24,10 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/Login.js"
     ],
-    "/Signin": [
+    "/UserLogged": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/Signin.js"
-    ],
-    "/Users": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/Users.js"
+      "static/chunks/pages/UserLogged.js"
     ],
     "/_app": [
       "static/chunks/main.js",
@@ -43,11 +38,6 @@
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
-    ],
-    "/posts/Covid19Data": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/posts/Covid19Data.js"
     ]
   },
   "ampFirstPages": []
