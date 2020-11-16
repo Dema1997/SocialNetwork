@@ -1,35 +1,117 @@
 import React,{useState} from 'react'
 import Head from 'next/head'
-import styles from './layout.module.css'
+import styles from './Layout.module.css'
 import Toolbar  from '@material-ui/core/Toolbar'
 import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button'
-import Menu from '@material-ui/icons/Menu'
 import IconButton from '@material-ui/core/IconButton';
 import Link from 'next/Link';
 import Typography from '@material-ui/core/Typography'
 import utilStyles from '../styles/utils.module.css'
 import { makeStyles } from '@material-ui/core/styles'
 import InputBase from '@material-ui/core/InputBase';
+import clsx from 'clsx';
+import { useTheme } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Divider from '@material-ui/core/Divider';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import MailIcon from '@material-ui/icons/Mail';
+import SportsTennisIcon from '@material-ui/icons/SportsTennis';
+import SportsSoccerIcon from '@material-ui/icons/SportsSoccer';
+import SportsBasketballIcon from '@material-ui/icons/SportsBasketball';
+import RecentActorsIcon from '@material-ui/icons/RecentActors';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import SportsVolleyballIcon from '@material-ui/icons/SportsVolleyball';
+import SportsGolfIcon from '@material-ui/icons/SportsGolf';
+import SportsRugbyIcon from '@material-ui/icons/SportsRugby';
+import SportsFootballIcon from '@material-ui/icons/SportsFootball';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    display: 'flex',
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: 5,
   },
-  title: {
-    flexGrow: 1,
+  hide: {
+    display: 'none',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+  },
+  drawerOpen: {
+    width: drawerWidth,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  drawerClose: {
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    overflowX: 'hidden',
+    width: theme.spacing(7) + 1,
+    [theme.breakpoints.up('sm')]: {
+      width: theme.spacing(9) + 1,
+    },
+  },
+  toolbar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+  },
+  content: {
+    flex:1,
+    padding:theme.spacing(3),
+  },
+  img: {
+    marginLeft:15,
+    maxWidth:'90%',
+    maxHeight:'100%',
+    objectFit:'contain',
+    backgroundSize:'cover'
+  },
+  imgToolbar: {
+    marginLeft:0
+  },
+  colorToolbar: {
+    backgroundColor:'#006666'
   },
   inputRoot: {
-    color: 'white',
-    borderRadius: 5,
-    border:'2px solid orange',
-    background:'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
+    border:'2px solid green',
+    background: 'linear-gradient(135deg, orange 60%, cyan)',
+    color:'white',
+    borderRadius:5
   },
   inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
@@ -44,6 +126,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const name = 'Filippo De Marco'
+const drawerWidth = 240;
 
 export const data=[
   {
@@ -72,40 +155,134 @@ export const siteTitle = 'Next.js Sample Website'
  *
 */
 export default function Layout({ children, home }) {
+  const [titleToolbar,setTitleToolbar]=useState(true)
   const classes = useStyles();
+  const theme = useTheme();
+
+  const [open, setOpen] = React.useState(false);
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
+
+  const handleListItemClick = (e,sport) => {
+    setSelectedIndex(sport);
+  };
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+    setTitleToolbar(!titleToolbar)
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+    setTitleToolbar(!titleToolbar)
+  };
+
   const [search, setSearch] = useState('')
 
   return (
     <>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap" rel="stylesheet"></link>
-    <AppBar style={{backgroundColor: '#1a1a1a'}} position="static">
-      <Toolbar style={{paddingTop:12,paddingLeft:25,paddingRight:25, paddingBottom:12, height: 85}}>
-
-        <IconButton  aria-label= "" style={{background:'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',color:"black" }}>
-          <Menu />
-        </IconButton>
-        
-        <IconButton style={{width:65,height:65}}>
-           <img src="/images/react.png"/>
-        </IconButton>
-
-        <IconButton style={{width:60,height:60}}>
-           <img src="/images/tsLogo.png"/>
-        </IconButton>
-
-        <IconButton style={{width:70,height:70,marginRight:11}}>
-           <img src="/images/material.png"/>
-        </IconButton>
-
-        <Typography variant="h6" className={classes.title}>
+    <CssBaseline />
+      <AppBar
+        position="sticky"
+        className={clsx(classes.appBar, {
+          [classes.appBarShift]: open,
+        })}
+      >
+        <Toolbar  className={classes.colorToolbar}>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            className={clsx(classes.menuButton, {
+              [classes.hide]: open,
+            })}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" noWrap>
             
-        </Typography>
-        
-        <Link href="Signin"><Button  style={{ marginLeft:20,height:56, background:'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',fontSize:14,textTransform:'capitalize', marginRight:2}}>Sign in</Button></Link>
-        <Link href="Login"><Button  style={{ marginLeft:20,height:56, backgroundImage: 'linear-gradient(315deg, #7ee8fa 0%, #80ff72 74%)', backgroundColor:'#7ee8fa', fontSize:14, textTransform:'capitalize', marginRight:2}}> Log in </Button></Link>
+          </Typography>
+          { titleToolbar ? <div><img alt="" src = "/images/logow.png" className={classes.imgToolbar}></img></div>: <></>}
+        </Toolbar>
+      </AppBar>
 
-      </Toolbar> 
-    </AppBar>
+      <Drawer
+        variant="permanent"
+        className={clsx(classes.drawer, {
+          [classes.drawerOpen]: open,
+          [classes.drawerClose]: !open,
+        })}
+        classes={{
+          paper: clsx({
+            [classes.drawerOpen]: open,
+            [classes.drawerClose]: !open,
+          }),
+        }}
+      >
+        <div className={classes.toolbar}>
+          <div><img alt="" src="/images/logow.png" className={classes.img}></img></div>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+          </IconButton>
+        </div>
+        <Divider />
+        <List>
+          
+            <ListItem button selected={selectedIndex === 'Calcio'} onClick={ (e) => handleListItemClick(e, 'Calcio') }>
+              <ListItemIcon><SportsSoccerIcon /></ListItemIcon>
+              <ListItemText primary='Calcio' />
+            </ListItem>
+
+            <ListItem button selected={selectedIndex === 'Pallavvolo'} onClick={ (e) => handleListItemClick(e, 'Pallavvolo')}>
+              <ListItemIcon><SportsVolleyballIcon /></ListItemIcon>
+              <ListItemText primary='Pallavvolo' />
+            </ListItem>
+            <ListItem button selected={selectedIndex === 'Basket'} onClick={ (e) => handleListItemClick(e, 'Basket') }>
+              <ListItemIcon><SportsBasketballIcon /></ListItemIcon>
+              <ListItemText primary='Basket' />
+            </ListItem>
+            <ListItem button selected={selectedIndex === 'Rugby'} onClick={ (e) => handleListItemClick(e, 'Rugby')}>
+              <ListItemIcon><SportsRugbyIcon /></ListItemIcon>
+              <ListItemText primary='Rugby' />
+            </ListItem>
+            <ListItem button selected={selectedIndex === 'Football Americano'} onClick={(e) => handleListItemClick(e, 'Football Americano')}>
+              <ListItemIcon><SportsFootballIcon /></ListItemIcon>
+              <ListItemText primary='Football Americano' />
+            </ListItem>
+            <ListItem button selected={selectedIndex === 'Tennis'} onClick={ (e) => handleListItemClick(e, 'Tennis')}>
+              <ListItemIcon><SportsTennisIcon /></ListItemIcon>
+              <ListItemText primary='Tennis' />
+            </ListItem>
+            <ListItem button selected={selectedIndex === 'Paddle'} onClick={ (e) => handleListItemClick(e, 'Paddle')}>
+              <ListItemIcon><SportsTennisIcon /></ListItemIcon>
+              <ListItemText primary='Paddle' />
+            </ListItem>
+            <ListItem button selected={selectedIndex === 'Golf'} onClick={ (e) => handleListItemClick(e, 'Golf')}>
+              <ListItemIcon><SportsGolfIcon /></ListItemIcon>
+              <ListItemText primary='Golf' />
+            </ListItem>
+        </List>
+
+        <Divider />
+
+        <List>
+          
+            <ListItem button>
+              <ListItemIcon> <MailIcon /></ListItemIcon>
+              <ListItemText primary='Contacts' />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon> <RecentActorsIcon /></ListItemIcon>
+              <ListItemText primary='About' />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon><ExitToAppIcon /></ListItemIcon>
+              <ListItemText primary='Log out' />
+            </ListItem>
+          
+        </List>
+      </Drawer>
 
     {search.length>0 &&
     <ul style={{backgroundColor:'#131417', marginTop:0, paddingBottom:20,borderRadius:10}}>
@@ -144,7 +321,7 @@ export default function Layout({ children, home }) {
               className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
               alt={name}
             />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
+            <h1 className={utilStyles.heading2Xl} style={{color:"black"}}>{name}</h1>
             <InputBase
               placeholder="Search…"
               classes={{

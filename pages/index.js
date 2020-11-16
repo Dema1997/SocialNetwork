@@ -29,12 +29,12 @@ export default function Home() {
       </Head>
 
       <section className={utilStyles.headingMd}>
-        <p className={utilStyles.intro}>Hello, I’m <strong>Filippo</strong>. I’m a software engineer for <strong>@LineApp</strong>. You can contact me on <a href="mailto:fil97@hotmail.it">fil97@hotmail.it</a>.</p>
+        <p className={utilStyles.intro} style={{color:'black'}}>Hello, I’m <strong>Filippo</strong>. I’m a software engineer for <strong>@LineApp</strong>. You can contact me on <a href="mailto:fil97@hotmail.it">fil97@hotmail.it</a>.</p>
       </section>
       
       <div className={utilStyles.blogContainer}>
       <section className={utilStyles.headingMd}>
-       <h1 className={utilStyles.headingLgB}>Blog</h1>
+       <h1 className={utilStyles.headingLgB} style={{color:'black'}}>Blog</h1>
        <ul className={utilStyles.list}>
 
           <li className={utilStyles.listItem}>
@@ -72,7 +72,6 @@ export default function Home() {
        </ul>
       </section>
       </div>
-
       </Layout>
   )
 }
