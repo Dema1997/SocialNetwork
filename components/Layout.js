@@ -229,39 +229,45 @@ export default function Layout({ children, home }) {
         <Divider />
         <List>
           
-            <ListItem button selected={selectedIndex === 'Calcio'} onClick={ (e) => handleListItemClick(e, 'Calcio') }>
+            <Link href="/Calcio"><ListItem button selected={selectedIndex === 'Calcio'} onClick={ (e) => handleListItemClick(e, 'Calcio') }>
               <ListItemIcon><SportsSoccerIcon /></ListItemIcon>
               <ListItemText primary='Calcio' />
-            </ListItem>
+            </ListItem></Link>
 
-            <ListItem button selected={selectedIndex === 'Pallavvolo'} onClick={ (e) => handleListItemClick(e, 'Pallavvolo')}>
+            <Link href="/"><ListItem button selected={selectedIndex === 'Pallavvolo'} onClick={ (e) => handleListItemClick(e, 'Pallavvolo')}>
               <ListItemIcon><SportsVolleyballIcon /></ListItemIcon>
               <ListItemText primary='Pallavvolo' />
-            </ListItem>
-            <ListItem button selected={selectedIndex === 'Basket'} onClick={ (e) => handleListItemClick(e, 'Basket') }>
+            </ListItem></Link>
+            
+            <Link href="/"><ListItem button selected={selectedIndex === 'Basket'} onClick={ (e) => handleListItemClick(e, 'Basket') }>
               <ListItemIcon><SportsBasketballIcon /></ListItemIcon>
               <ListItemText primary='Basket' />
-            </ListItem>
-            <ListItem button selected={selectedIndex === 'Rugby'} onClick={ (e) => handleListItemClick(e, 'Rugby')}>
+            </ListItem></Link>
+
+            <Link href="/"><ListItem button selected={selectedIndex === 'Rugby'} onClick={ (e) => handleListItemClick(e, 'Rugby')}>
               <ListItemIcon><SportsRugbyIcon /></ListItemIcon>
               <ListItemText primary='Rugby' />
-            </ListItem>
-            <ListItem button selected={selectedIndex === 'Football Americano'} onClick={(e) => handleListItemClick(e, 'Football Americano')}>
+            </ListItem></Link>
+
+            <Link href="/"><ListItem button selected={selectedIndex === 'Football Americano'} onClick={(e) => handleListItemClick(e, 'Football Americano')}>
               <ListItemIcon><SportsFootballIcon /></ListItemIcon>
               <ListItemText primary='Football Americano' />
-            </ListItem>
-            <ListItem button selected={selectedIndex === 'Tennis'} onClick={ (e) => handleListItemClick(e, 'Tennis')}>
+            </ListItem></Link>
+            
+            <Link href="/Tennis"><ListItem button selected={selectedIndex === 'Tennis'} onClick={ (e) => handleListItemClick(e, 'Tennis')}>
               <ListItemIcon><SportsTennisIcon /></ListItemIcon>
               <ListItemText primary='Tennis' />
-            </ListItem>
-            <ListItem button selected={selectedIndex === 'Paddle'} onClick={ (e) => handleListItemClick(e, 'Paddle')}>
+            </ListItem></Link>
+
+            <Link href="/"><ListItem button selected={selectedIndex === 'Paddle'} onClick={ (e) => handleListItemClick(e, 'Paddle')}>
               <ListItemIcon><SportsTennisIcon /></ListItemIcon>
               <ListItemText primary='Paddle' />
-            </ListItem>
-            <ListItem button selected={selectedIndex === 'Golf'} onClick={ (e) => handleListItemClick(e, 'Golf')}>
+            </ListItem></Link>
+
+            <Link href="/"><ListItem button selected={selectedIndex === 'Golf'} onClick={ (e) => handleListItemClick(e, 'Golf')}>
               <ListItemIcon><SportsGolfIcon /></ListItemIcon>
               <ListItemText primary='Golf' />
-            </ListItem>
+            </ListItem></Link>
         </List>
 
         <Divider />
