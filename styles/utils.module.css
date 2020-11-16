@@ -48,6 +48,10 @@
     border-radius: 9999px;
   }
   
+  .colorName {
+    color: 'primary'
+  }
+
   .colorInherit {
     color: inherit;
   }

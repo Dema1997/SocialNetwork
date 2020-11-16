@@ -68,26 +68,26 @@ export const Users = ({users}) =>{
       </Head>
       
       <main className={styles.main}>
-        <h1 className={styles.title}>
+        <h2 className={styles.title}>
          {users.length} users
-        </h1>
+        </h2>
         <br/>
 
-        <Button onClick={handleClick} variant ="outlined">Create User</Button>
+        <Button onClick={handleClick} variant ="outlined"> { creating ? 'Creating..' : 'Create User' } </Button>
         
       { creating ?
       <>
         <Dialog fullWidth open='true'>
-          <DialogTitle style={{textAlign:'center',marginTop:10}}>
+          <DialogTitle style={{textAlign:'center',marginTop:7}}>
             <h2><b>Adding new user...</b></h2>
           </DialogTitle>
-        <form onSubmit={handleSubmit} style={{padding:50,paddingTop:30}}>
-          <TextField fullWidth required value={campi.email} onChange={handleChange} name="email" type="email" placeholder="email"/><br/><br/>
-          <TextField fullWidth required value={campi.firstName} onChange={handleChange} name="firstName" type="text" placeholder="firstName"/><br/><br/>
-          <TextField fullWidth required value={campi.lastName} onChange={handleChange} name="lastName" type="text" placeholder="lastName"/><br/><br/>
-          <TextField fullWidth required value={campi.city} onChange={handleChange} name="city" type="text" placeholder="city"/><br/><br/>
-          <TextField fullWidth required value={campi.address} onChange={handleChange} name="address" type="text" placeholder="address"/><br/><br/>
-          <TextField fullWidth required value={campi.date} onChange={handleChange} name="date" type="text" placeholder="date"/><br/><br/><br/>
+        <form onSubmit={handleSubmit} style={{padding:50,paddingTop:20}}>
+          <TextField fullWidth required value={campi.email} onChange={handleChange} name="email" type="email" placeholder="Email"/><br/><br/>
+          <TextField fullWidth required value={campi.firstName} onChange={handleChange} name="firstName" type="text" placeholder="First Name"/><br/><br/>
+          <TextField fullWidth required value={campi.lastName} onChange={handleChange} name="lastName" type="text" placeholder="Last Name"/><br/><br/>
+          <TextField fullWidth required value={campi.city} onChange={handleChange} name="city" type="text" placeholder="City"/><br/><br/>
+          <TextField fullWidth required value={campi.address} onChange={handleChange} name="address" type="text" placeholder="Address"/><br/><br/>
+          <TextField fullWidth required value={campi.date} onChange={handleChange} name="date" type="text" placeholder="Date"/><br/><br/><br/>
           <div>
           <Button  variant ="outlined"  type="submit" style={{float:'right',borderColor:'#47cf73'}}>Confirm</Button>
           <Button color="secondary" onClick={handleClick} variant ="outlined" style={{float:'right',marginRight:8}}>Close</Button>

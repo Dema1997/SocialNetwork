@@ -2,10 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
   "/": "pages/index.js",
-  "/[id]": "pages/[id].js",
-  "/Users": "pages/Users.js",
-  "/api/users/[id]": "pages/api/users/[id].js",
-  "/api/users": "pages/api/users.js"
+  "/Users": "pages/Users.js"
 }

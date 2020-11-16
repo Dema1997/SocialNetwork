@@ -47,6 +47,10 @@ const name = 'Filippo De Marco'
 
 export const data=[
   {
+    titolo: 'Users',
+    link: 'Users'
+  },
+  {
     titolo: 'Covid 19 Analytics ',
     link: 'Covid19Data'
   },
@@ -154,23 +158,13 @@ export default function Layout({ children, home }) {
             /> 
           </>
         ) : (
-          <>
-            <Link href="/">
-              <a>
-                <img
-                  src="/images/logo.jpg"
-                  className={`${styles.headerImage} ${utilStyles.borderCircle}`}
-                  alt={name}
-                />
-              </a>
-            </Link>
-            <h2 className={utilStyles.poppins}>
+          <>  <br/>
               <Link href="/">
-                <a className={utilStyles.colorInherit}>{name}</a>
-              </Link>
-            </h2>
+                <a><img src="/images/logow.png"></img></a>
+              </Link><br/><br/>
           </>
-        )}
+            )
+        }
       </header>
 
       <main>{children}</main>
