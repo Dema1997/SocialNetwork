@@ -1,6 +1,7 @@
 import {NextApiRequest,NextApiResponse} from 'next'
 import jwt from 'jsonwebtoken'
 
+//initializing Key with a random value
 const KEY = 'abc'
 
 export default function (req,res){
@@ -14,8 +15,8 @@ export default function (req,res){
     res.json({
         token: jwt.sign(
             {
-                email,
-                admin: email === 'admin@a.it' && password === 'admin'
+                email, password,
+                admin: email === 'admin@admin.it' && password === 'admin'
             },
             KEY
         )

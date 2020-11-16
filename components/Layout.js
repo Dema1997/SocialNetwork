@@ -59,6 +59,9 @@ export const data=[
     link: 'MongoDBApp'
   },
 ]
+/**
+ * Return the site name
+ */
 export const siteTitle = 'Next.js Sample Website'
 
 /* 
@@ -66,7 +69,7 @@ export const siteTitle = 'Next.js Sample Website'
 */
 export default function Layout({ children, home }) {
   const classes = useStyles();
-  const [search,setSearch]=useState('')
+  const [search, setSearch] = useState('')
 
   return (
     <>

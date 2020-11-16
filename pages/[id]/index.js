@@ -5,7 +5,8 @@ import {useRouter} from 'next/router'
 import DeleteIcon from '@material-ui/icons/Delete';
 import Link from 'next/Link'
 
-export const User = ({user}) => {
+
+const User = ({ user }) => {
 
     const router = useRouter()
 
@@ -21,25 +22,10 @@ export const User = ({user}) => {
         }
     }, [isDeleting])
 
-    const deleteUser = async () => {
-        const id = router.query.id
-        try{
-           const deleted = await fetch(`http://localhost:3000/api/users/${id}`, {
-            method: 'DELETE',
-          })
-          router.push("/Users")
-        }catch(error){
-          console.log("Error:", error)
-        }
-      }
-    
-    return(
-        <>
-            {
-            isDeleting ? <></>
-            :
-            <> 
-              <div className={styles.userInfoId}>
+    //UserTruthy.js
+    const UserTruthy = () => (
+      <>
+      <div className={styles.userInfoId}>
               <b><label>Id</label></b>{user._id}
               </div>
               <br/>
@@ -51,8 +37,7 @@ export const User = ({user}) => {
                 <b><label>Address</label></b><label>{user.address}</label><br/>
                 <Button style={{fontSize:13}} startIcon={<DeleteIcon />} variant="contained" color="secondary" onClick={handleClick} >Delete</Button>
               </div>
-            </>
-            }
+            
             <div className={styles.backToHome} style={{marginTop:15}}>
                 <Link href="/">
                     <a style={{marginLeft:25}}>← Back to home</a>
@@ -60,12 +45,32 @@ export const User = ({user}) => {
            </div>
         </>
     )
+
+    const deleteUser = async () => {
+        const id = router.query.id
+        try{
+           const deleted = await fetch(`http://localhost:3000/api/users/${id}`, {
+            method: 'DELETE',
+          })
+          router.push("/Users")
+        }catch(error){
+          console.log("Error:", error)
+        }
+      }
+
+    return isDeleting ? <></> : user ? <UserTruthy /> : <>User is falsy</>
+
 }
 export default User;
 
-User.getInitialProps = async ({ query: { id } }) => {
+User.getInitialProps = async (ctx) => {
+    const { id } = ctx.query
     const res = await fetch(`http://localhost:3000/api/users/${id}`)
     const {data} = await res.json()
-    console.log(res)
+    /*
+    * Viene chiamata quando parte l'applicazione.
+    * E' un comportamento non desiderato
+    * Deve essere chiamata solo qusndo richiedo i dati di un utente.
+    */
     return {user: data}
 }
