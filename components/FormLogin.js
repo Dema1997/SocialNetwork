@@ -6,7 +6,7 @@ import {useState} from 'react'
 import { useRouter } from 'next/router'
 import styles from '../styles/utils.module.css'
 import { makeStyles } from '@material-ui/core/styles'
-import Link from 'next/Link'
+import Link from 'next/link'
 const jwt = require('jsonwebtoken');
 
 const useStyles = makeStyles({
