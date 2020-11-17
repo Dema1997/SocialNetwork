@@ -5,7 +5,7 @@ import {Button, DialogTitle, TextField} from '@material-ui/core'
 import Dialog from '@material-ui/core/Dialog';
 import { useEffect, useState} from 'react'
 import { useRouter } from 'next/router'
-import Link from 'next/Link'
+import Link from 'next/link'
 
 export const Users = ({users}) =>{
 

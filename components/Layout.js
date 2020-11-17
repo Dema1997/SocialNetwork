@@ -3,7 +3,7 @@ import Head from 'next/head'
 import styles from './Layout.module.css'
 import Toolbar  from '@material-ui/core/Toolbar'
 import AppBar from '@material-ui/core/AppBar';
-import Link from 'next/Link';
+import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';

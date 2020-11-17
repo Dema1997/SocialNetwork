@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Layout, { siteTitle } from '../components/Layout'
 import utilStyles from '../styles/utils.module.css'
 import { makeStyles } from '@material-ui/core/styles';
-import Link from 'next/Link'
+import Link from 'next/link'
 import Grid from '@material-ui/core/Grid';
 import { Divider,Button, TextField } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
