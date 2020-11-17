@@ -1,6 +1,21 @@
 {
+  "/Calcio": "pages/Calcio.html",
+  "/Home": "pages/Home.html",
+  "/Signin": "pages/Signin.html",
+  "/Tennis": "pages/Tennis.html",
+  "/UserLogged": "pages/UserLogged.html",
+  "/Users": "pages/Users.js",
+  "/[id]": "pages/[id].js",
   "/_app": "pages/_app.js",
+  "/api/login": "pages/api/login.js",
+  "/api/secret": "pages/api/secret.js",
+  "/api/users/[id]": "pages/api/users/[id].js",
+  "/api/users": "pages/api/users.js",
+  "/": "pages/index.html",
+  "/posts/Covid19Data": "pages/posts/Covid19Data.html",
+  "/posts/MongoDBApp": "pages/posts/MongoDBApp.html",
+  "/posts/firstPost": "pages/posts/firstPost.html",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/Home": "pages/Home.js"
+  "/404": "pages/404.html"
 }
