@@ -3,12 +3,8 @@ import Head from 'next/head'
 import styles from './Layout.module.css'
 import Toolbar  from '@material-ui/core/Toolbar'
 import AppBar from '@material-ui/core/AppBar';
-import IconButton from '@material-ui/core/IconButton';
 import Link from 'next/Link';
-import Typography from '@material-ui/core/Typography'
-import utilStyles from '../styles/utils.module.css'
 import { makeStyles } from '@material-ui/core/styles'
-import InputBase from '@material-ui/core/InputBase';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -21,7 +17,6 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
 import SportsTennisIcon from '@material-ui/icons/SportsTennis';
 import SportsSoccerIcon from '@material-ui/icons/SportsSoccer';
 import SportsBasketballIcon from '@material-ui/icons/SportsBasketball';
@@ -31,6 +26,15 @@ import SportsVolleyballIcon from '@material-ui/icons/SportsVolleyball';
 import SportsGolfIcon from '@material-ui/icons/SportsGolf';
 import SportsRugbyIcon from '@material-ui/icons/SportsRugby';
 import SportsFootballIcon from '@material-ui/icons/SportsFootball';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MailIcon from '@material-ui/icons/Mail';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import InputBase from '@material-ui/core/InputBase';
+import Badge from '@material-ui/core/Badge';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -106,9 +110,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor:'#006666'
   },
   inputRoot: {
+    marginLeft:200,
+    marginRight:200,
+    flexGrow:1,
     border:'2px solid green',
-    background: 'linear-gradient(135deg, orange 60%, cyan)',
-    color:'white',
+    background: 'white',
+    color:'black',
     borderRadius:5
   },
   inputInput: {
@@ -159,8 +166,11 @@ export default function Layout({ children, home }) {
   const classes = useStyles();
   const theme = useTheme();
 
+  const [search, setSearch] = useState('')
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const handleListItemClick = (e,sport) => {
     setSelectedIndex(sport);
@@ -176,7 +186,22 @@ export default function Layout({ children, home }) {
     setTitleToolbar(!titleToolbar)
   };
 
-  const [search, setSearch] = useState('')
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+  };
+
+  const handleMobileMenuClose = () => {
+    setMobileMoreAnchorEl(null);
+  };
+
+  const handleProfileMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const menuId = 'primary-search-account-menu';
+  const isMenuOpen = Boolean(anchorEl);
+  
 
   return (
     <>
@@ -204,6 +229,65 @@ export default function Layout({ children, home }) {
             
           </Typography>
           { titleToolbar ? <div><img alt="" src = "/images/logow.png" className={classes.imgToolbar}></img></div>: <></>}
+          <InputBase
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              name='search'
+              inputProps={{ 'aria-label': 'search' }}
+              value={search}
+              onChange = { (e) => { setSearch(e.target.value) } }
+            />
+            {
+            search.length<0 &&
+                <><ul style={{backgroundColor:'#131417', marginTop:0, paddingBottom:20,borderRadius:10}}>
+                      { 
+                        data.map( (sugg,i) => {
+                          return ( sugg.titolo.toLowerCase().includes(search))
+                            &&  <><li key={i} ><a href= {`/posts/${sugg.link}`} >{sugg.titolo}</a> </li></>
+                        })
+                      }
+                </ul></>
+            }
+
+            <IconButton aria-label="show 4 new mails" color="inherit">
+              <Badge badgeContent={4} color="secondary">
+                <MailIcon />
+              </Badge>
+            </IconButton>
+
+            <IconButton aria-label="show 17 new notifications" color="inherit">
+              <Badge badgeContent={17} color="secondary">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+
+            <IconButton
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleProfileMenuOpen}
+              color="inherit"
+            >
+              <AccountCircle />
+          </IconButton>
+
+          <Menu
+            anchorEl={anchorEl}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            id={menuId}
+            keepMounted
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            open={isMenuOpen}
+            onClose={handleMenuClose}
+          >
+            <MenuItem onClick={handleMenuClose}><Link href="/Profile">Profile</Link></MenuItem>
+            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+          </Menu>
+
         </Toolbar>
       </AppBar>
 
@@ -290,16 +374,7 @@ export default function Layout({ children, home }) {
         </List>
       </Drawer>
 
-    {search.length>0 &&
-    <ul style={{backgroundColor:'#131417', marginTop:0, paddingBottom:20,borderRadius:10}}>
-          { 
-            data.map( (sugg,i) => {
-              return ( sugg.titolo.toLowerCase().includes(search))
-                &&  <><li key={i} ><a href= {`/posts/${sugg.link}`} >{sugg.titolo}</a> </li></>
-            })
-          }
-    </ul>
-    }
+  
 
     <div className={styles.container}>
       <Head>
@@ -319,26 +394,9 @@ export default function Layout({ children, home }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
-      <header className={styles.header}>
+      <header style={{float:'left'}} >
         { home ? (
           <>
-            <img
-              src="/images/logo.jpg"
-              className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
-              alt={name}
-            />
-            <h1 className={utilStyles.heading2Xl} style={{color:"black"}}>{name}</h1>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              name='search'
-              inputProps={{ 'aria-label': 'search' }}
-              value={search}
-              onChange = { (e) => { setSearch(e.target.value) } }
-            /> 
           </>
         ) : (
           <>  <br/>

@@ -77,10 +77,9 @@ export const FormLogin = () => {
       console.log('Token generated: ' + token)
       
       if(token){
-        const json=jwt.decode(token)
-        console.log('Token decodified: ' + json)
+        const json = jwt.decode(token)
 
-        const res= await fetch('api/secret',{
+        const res = await fetch('api/secret',{
           method:'POST',
           headers:{
             'Content-Type':'application/json'
@@ -88,7 +87,9 @@ export const FormLogin = () => {
           body: JSON.stringify({token})
         }).then((t)=> t.json())
         
-        router.push('/UserLogged')
+        console.log(res)
+
+        router.push('/Home')
       }
         else{
           console.log('Error')

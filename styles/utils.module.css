@@ -45,7 +45,12 @@
 }
 
 .borderCircle {
+  width: 70px;
+  height: 70px;
   border-radius: 9999px;
+  margin-left: 0px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .colorName {
@@ -121,8 +126,7 @@
 .blogContainer{
   background-color:'white';
   padding:10px;
-  border:1px solid green;
-  border-radius: 5px;
+  
 }
 .poppins {
   font-family: 'Poppins', 'sans-serif';
@@ -133,7 +137,7 @@
 */
 
 .container {
-  border:1px solid black;
+  border:1px solid white;
   border-radius: 10px;
   background-color: black;
   min-height: 100vh;

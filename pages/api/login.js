@@ -16,7 +16,7 @@ export default function (req,res){
         token: jwt.sign(
             {
                 email, password,
-                admin: email === 'admin@admin.it' && password === 'admin'
+                admin: email === 'fil97@hotmail.it' && password === 'admin'
             },
             KEY
         )

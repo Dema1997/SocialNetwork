@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
 
 .container {
-    max-width: 56rem;
-    padding: 0 1rem;
+    max-width: 90%;
     margin: 3rem auto 6rem;
+    margin-right: 40px;
+    margin-left: auto;
   }
   
   .header {
