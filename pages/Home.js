@@ -110,7 +110,7 @@ export default function Home() {
         <Grid item xs={7}>
         <div align="center" style={{marginLeft:10}}>
           <img 
-        src="/images/logo.jpg"
+        src="/images/me.jpg"
         className={` ${utilStyles.borderCircle}`}
         alt=""
       /> 
