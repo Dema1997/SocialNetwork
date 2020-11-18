@@ -3,7 +3,6 @@
   "/Home": "pages/Home.html",
   "/Signin": "pages/Signin.html",
   "/Tennis": "pages/Tennis.html",
-  "/UserLogged": "pages/UserLogged.html",
   "/Users": "pages/Users.js",
   "/[id]": "pages/[id].js",
   "/_app": "pages/_app.js",
@@ -15,6 +14,7 @@
   "/posts/Covid19Data": "pages/posts/Covid19Data.html",
   "/posts/MongoDBApp": "pages/posts/MongoDBApp.html",
   "/posts/firstPost": "pages/posts/firstPost.html",
+  "/userLogged": "pages/userLogged.html",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/404": "pages/404.html"
